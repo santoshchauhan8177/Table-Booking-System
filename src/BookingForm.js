@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import { useNavigate } from 'react-router-dom';
 function BookingForm() {
     const [formData, setFormData] = useState({
         firstName: '',
@@ -13,7 +13,7 @@ function BookingForm() {
         specialRequests: '',
         agreeToTerms: false
     });
-
+    const navigate = useNavigate();
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({
@@ -34,6 +34,7 @@ function BookingForm() {
         e.preventDefault();
         console.log('Form Data:', formData);
         // Process form submission logic here
+        navigate('/bookings');
     };
 
     return (
