@@ -196,15 +196,24 @@ function BookingForm() {
                                 className="form-checkbox"
                             />
                             <span className="ml-2 text-gray-700">
-                                I agree to the{' '}
-                                <a href="#" className="text-blue-600">
-                                    terms and conditions
-                                </a>{' '}
-                                and{' '}
-                                <a href="#" className="text-blue-600">
-                                    cancellation policy
-                                </a>
-                            </span>
+    I agree to the{' '}
+    <button
+        onClick={() => alert('Terms and Conditions')}
+        className="text-blue-600 underline"
+        type="button"
+    >
+        terms and conditions
+    </button>{' '}
+    and{' '}
+    <button
+        onClick={() => alert('Cancellation Policy')}
+        className="text-blue-600 underline"
+        type="button"
+    >
+        cancellation policy
+    </button>
+</span>
+
                         </label>
                     </div>
 
