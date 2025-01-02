@@ -11,9 +11,10 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "mongoose": "^8.9.3",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^7.1.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router": "^6.16.0",
+    "react-router-dom": "^6.16.0",
     "react-scripts": "^5.0.1",
     "web-vitals": "^4.2.4"
   },
@@ -22,7 +23,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prebuild": "echo 'Starting build...' && ls -al"
+    "prebuild": "echo 'Starting build...' && ls -al",
+    "postinstall": "chmod +x ./node_modules/.bin/react-scripts"
   },
   "eslintConfig": {
     "extends": [
