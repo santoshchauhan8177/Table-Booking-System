@@ -4,6 +4,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
 import BookingForm from './BookingForm';
 import BookingList from './BookingList';
+import ConfirmationPage from './ConfirmationPage';
 
 function App() {
     return (
@@ -11,6 +12,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<BookingForm />} />
                 <Route path="/bookings" element={<BookingList />} />
+                <Route path="/confirmation" element={<ConfirmationPage />} />
             </Routes>
         </Router>
     );

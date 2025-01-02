@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
 function BookingForm() {
     const [formData, setFormData] = useState({
         firstName: '',
@@ -14,6 +16,7 @@ function BookingForm() {
         agreeToTerms: false
     });
     const navigate = useNavigate();
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({
@@ -30,11 +33,24 @@ function BookingForm() {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Form Data:', formData);
-        // Process form submission logic here
-        navigate('/bookings');
+
+        // Validate form data
+        if (!formData.agreeToTerms) {
+            alert("You must agree to the terms and conditions.");
+            return;
+        }
+
+        try {
+            // Send form data to backend
+            const response = await axios.post('http://localhost:5000/create-booking', formData);
+            console.log('Booking submitted:', response.data);
+            navigate('/confirmation');  // Redirect after successful booking
+        } catch (error) {
+            console.error('Error submitting booking:', error);
+            alert('There was an error submitting your booking. Please try again.');
+        }
     };
 
     return (
@@ -45,6 +61,7 @@ function BookingForm() {
                     <p className="text-gray-600">Please fill in the details for your table reservation</p>
                 </div>
                 <form onSubmit={handleSubmit}>
+                    {/* Guest Information */}
                     <div className="mb-6">
                         <h2 className="text-lg font-semibold text-gray-800 mb-2">Guest Information</h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -90,6 +107,8 @@ function BookingForm() {
                             </div>
                         </div>
                     </div>
+
+                    {/* Reservation Details */}
                     <div className="mb-6">
                         <h2 className="text-lg font-semibold text-gray-800 mb-2">Reservation Details</h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -154,6 +173,8 @@ function BookingForm() {
                             </div>
                         </div>
                     </div>
+
+                    {/* Special Requests */}
                     <div className="mb-6">
                         <label className="block text-gray-700">Special Requests</label>
                         <textarea
@@ -164,6 +185,8 @@ function BookingForm() {
                             placeholder="Any special requests or dietary requirements?"
                         ></textarea>
                     </div>
+
+                    {/* Terms & Conditions Checkbox */}
                     <div className="mb-6">
                         <label className="inline-flex items-center">
                             <input
@@ -184,6 +207,8 @@ function BookingForm() {
                             </span>
                         </label>
                     </div>
+
+                    {/* Submit Button */}
                     <div className="flex justify-center">
                         <button type="submit" className="bg-blue-600 text-white px-6 py-2 rounded-md">
                             Confirm Reservation
