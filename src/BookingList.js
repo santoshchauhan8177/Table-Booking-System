@@ -10,7 +10,7 @@ const BookingList = () => {
     useEffect(() => {
         const fetchBookings = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/get-booking/');
+                const response = await axios.get('https://backend-table-booking-zeta.vercel.app/get-booking/');
                 setBookings(response.data);
             } catch (err) {
                 setError('Error fetching bookings.');
@@ -24,7 +24,7 @@ const BookingList = () => {
 
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`http://localhost:5000/delete-booking/${id}`);
+            await axios.delete(`https://backend-table-booking-zeta.vercel.app/delete-booking/${id}`);
             setBookings((prevBookings) => prevBookings.filter((booking) => booking._id !== id));
         } catch (err) {
             setError('Error deleting booking.');

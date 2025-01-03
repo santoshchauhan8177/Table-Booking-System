@@ -44,7 +44,7 @@ function BookingForm() {
 
         try {
             // Send form data to backend
-            const response = await axios.post('http://localhost:5000/create-booking', formData);
+            const response = await axios.post('https://backend-table-booking-zeta.vercel.app/create-booking', formData);
             console.log('Booking submitted:', response.data);
             navigate('/confirmation');  // Redirect after successful booking
         } catch (error) {
